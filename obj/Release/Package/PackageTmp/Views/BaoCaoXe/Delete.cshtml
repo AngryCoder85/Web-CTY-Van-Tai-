@@ -1,0 +1,73 @@
+﻿@model CTY_DVVT.Models.BaoCaoXe
+
+@{
+    ViewBag.Title = "Xoá bảng ghi nhận";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Sửa thông tin Báo cáo</h2>
+<div class="container">
+    @using (Html.BeginForm("Delete", "BaoCaoXe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="BCXId" value="@Model.BCXId" />
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                <label for="NgayThang">Ngày tháng</label>
+                <input type="date" class="form-control" id="NgayThang" name="NgayThang" value="@Model.NgayThang.ToString("yyyy-MM-dd")" readonly="readonly" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.XeId, "Xe")
+                @Html.TextBoxFor(row => row.Xe.BSXe, new { @class = "form-control", @Value = Model.Xe.BSXe, @readonly = "true" })
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.Tien, "Tiền sửa xe")
+                @Html.TextBoxFor(row => row.Tien, new { @class = "form-control", placeholder = "Money ...", @Value = Model.Tien.ToString("n0"), @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.Tien)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.GhiChu, "Báo cáo")
+                @Html.TextBoxFor(row => row.GhiChu, new { @class = "form-control", placeholder = "Lương ...", @Value = Model.GhiChu, @readonly = "true" })
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 text-center">
+                <button type="submit" id="final" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Xóa</button>
+                <a href="/baocaoxe/index/@Model.XeId" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+
+<script>
+
+    function delcomma(_obj) {
+        if (parseInt(_obj) == 0)
+            return parseInt(_obj);
+        else
+            return parseInt(_obj.replaceAll(',', '').replaceAll('.', ''));
+    };
+
+    $(function () {
+
+        $("#final").click(function () {
+            $("#Tien").val(delcomma($("#Tien").val()));
+        });
+    });
+</script>
+

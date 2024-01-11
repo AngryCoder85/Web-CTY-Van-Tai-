@@ -1,0 +1,32 @@
+﻿@model CTY_DVVT.Models.LoaiXe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Xóa thông tin loại xe</h2>
+<div class="container">
+    @using (Html.BeginForm("Delete", "LoaiXe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="LXID" value="@Model.LXID" />
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.LXName, "Tên loại xe")
+                @Html.TextBoxFor(row => row.LXName, new { @class = "form-control", placeholder = "Tên loại xe ...", @Value = Model.LXName, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.LXName)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Xóa</button>
+                <a href="/loaixe/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+

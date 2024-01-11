@@ -1,0 +1,49 @@
+﻿@model CTY_DVVT.Models.KhachHang
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Thông tin khách hàng mới</h2>
+<div class="container">
+    @using (Html.BeginForm("Create", "KhachHang", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.KHName, "Tên Khách Hàng")
+                @Html.TextBoxFor(row => row.KHName, new { @class = "form-control", placeholder = "Tên ..." })
+                @Html.ValidationMessageFor(row => row.KHName)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.KHSdt, "Số điện thoại")
+                @Html.TextBoxFor(row => row.KHSdt, new { @class = "form-control", placeholder = "Số điện thoại ..." })
+                @Html.ValidationMessageFor(row => row.KHSdt)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.KHDiaChi, "Địa chỉ")
+                @Html.TextBoxFor(row => row.KHDiaChi, new { @class = "form-control", placeholder = "Địa chỉ ..." })
+                @Html.ValidationMessageFor(row => row.KHDiaChi)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Thêm</button>
+                <a href="/khachhang/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+

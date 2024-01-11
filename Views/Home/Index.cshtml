@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "Công Ty Vận Tải Biển Đông | Trang Chủ";
+    Layout = "~/Views/Shared/_LayoutPageGlobal.cshtml";
+}
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div id="div-Logo" class="col-lg-3 col-md-12 py-5" style="background-color: rgb(28 39 69)">
+            <img src="~/Images/fav-icon.png" class="img-thumbnail rounded-circle bg-white my-auto mx-auto d-block" />
+        </div>
+        <div class="col-lg-9 col-md-12 py-5 px-4">
+            <h4 class="text-uppercase mb-4 text-center" style="color: rgb(35 79 176)">công ty vận tải hàng hoá biển đông</h4>
+            <p class="text-break mb-3"><span class="fw-bold">Công ty vận tải</span> Biển Đông chuyên cung cấp dịch vụ vận chuyển hàng hóa. Xe giao hàng đến 63 tỉnh thành trên cả nước, Chúng tôi là một trong những công ty có quy mô lớn ở khu vực Miền Nam.</p>
+            <p class="text-break mb-3">Công ty hiện có hơn <span class="fw-bold">50</span> đầu xe, bao gồm xe tải và xe đầu kéo, xe Container. Hệ thống chi nhánh có mặt đầy tại các khu vực Bắc Trung Nam, Tây Nguyên, và các tỉnh Đồng Bằng Sông Cửu Long.</p>
+            <p class="text-break">Công ty có hệ thống vận hành và quản lý dịch vụ bằng công nghệ thông minh 4.0. Biển Đông tự tin với chất lượng dịch vụ vượt trội và giá cước vận chuyển Siêu Rẻ.</p>
+        </div>
+        <script>
+            function onresize() {
+                if ($(window).width() <= 1000) {
+                    $("#div-Logo").removeClass("rounded-3");
+                } else {
+                    $("#div-Logo").addClass("rounded-3");
+                }
+            }
+            $(window).resize(onresize);
+            onresize();
+        </script>
+    </div>
+</div>
+<div style="background-color: rgb(47 59 121)">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-12 mt-4 text-center"><h3 class="text-white text-uppercase fw-bold">dịch vụ hỗ trợ vận chuyển</h3></div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+            @foreach(var item in ViewBag.DVList)
+            {
+                <div class="col text-center pb-1 pt-1">
+                    <span class="d-inline-block px-4 pb-2 rounded-circle border border-2" style="font-size: 4rem; color: aquamarine; border-color: aquamarine !important"><i class="@item.DVUrlImg d-inline-block"></i></span>
+                    <h4 class="fw-bold text-white mt-3">@item.DVName</h4>
+                    <p style="color: rgb(223 214 214)">@item.DVDescription</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="container mb-4">
+    <div class="row mb-2">
+        <div class="col-12 mt-4 text-center"><h3 class="text-uppercase fw-bold" style="color: rgb(35 79 176)">dịch vụ vận tải & vận chuyển</h3></div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach(var item in ViewBag.DVVCHList)
+        {
+            <div class="col d-flex align-items-stretch">
+                <div class="card rounded-0 border-0 border-bottom border-5 px-3 pt-1" style="border-color: rgb(28 43 117) !important; background-color: rgb(236 240 241) !important">
+                    <img src="~/Images/DichVu-VanTai/@item.DVUrlImg" class="card-img-top rounded-0 img-hover" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title" style="color: rgb(35 79 176)">@item.DVName</h5>
+                        <p class="card-text">@item.DVDescription</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div style="background-color: rgb(223 226 246)">
+    <div class="container p-4">
+        <div class="row mb-1 mt-2">
+            <div class="col-12 text-center"><h2 class="fw-bold" style=" color: rgb(225 113 46)">TIÊU CHÍ TRONG VẬN TẢI HÀNG HÓA</h2></div>
+        </div>
+        <div class="row row-cols-3 mb-2">
+            <div class="col">&nbsp;</div>
+            <div class="col"><hr style="border: 2px solid rgb(225 113 46) !important; opacity: 1 !important" /></div>
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 text-center"><p>Giá cước vận chuyển chỉ quan trọng một phần trong vận tải hàng hóa. Các yếu tố tạo nên độ chính xác về thời gian vận tải cũng như sự an toàn là những yếu tố khách hàng cần xem xét kỹ lưỡng hơn.</p></div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach(var item in ViewBag.TCVTList)
+            {
+                <div class="col d-flex align-items-stretch">
+                    <div class="card rounded-0 rounded-top border-bottom border-5 pt-2 card-tcvt" style="border-color: rgb(28 43 117) !important; background-color: rgb(238 245 249) !important ">
+                        <i class="@item.DVUrlImg rounded-circle mx-auto my-auto d-block px-3 py-1" style="font-size: 3rem; color: white; background-color: rgb(131 138 144)"></i>
+                        <div class="card-body text-center">
+                            <h5 class="card-title" style="color: rgb(35 79 176)">@item.DVName</h5>
+                            <p class="card-text">@item.DVDescription</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="container mb-4">
+    <div class="row mb-2">
+        <div class="col-12 mt-4 text-center"><h3 class="fw-bold" style="color: rgb(35 79 176)">CÁC LOẠI XE VẬN TẢI CỦA BIỂN ĐÔNG</h3></div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach(var item in ViewBag.PTVCList)
+        {
+            <div class="col d-flex align-items-stretch">
+                <div class="card rounded-0 border-0" style="background-color: rgb(197 202 203) !important">
+                    <img src="~/Images/PhuongTien-VanTai/@item.DVUrlImg" class="card-img-top rounded-0" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title" style="color: rgb(35 79 176)">@item.DVName</h5>
+                        <p class="card-text">@item.DVDescription</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="border border-4 p-4" style="border-color: rgb(96 194 240) !important">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-2 mt-3">
+            <div class="col text-center">
+                <i class="bi bi-question-lg rounded-circle d-inline-block px-2" style="font-size: 2rem; color: white; background-color: rgb(30 63 132)"></i>
+                <h3 class="fw-bold mt-1" style="color: rgb(35 79 176)">CÂU HỎI THƯỜNG GẶP TRONG VẬN TẢI</h3>
+            </div>
+            <div class="col">
+                <ul class="list-unstyled">
+                    @foreach (var item in ViewBag.DSCH)
+                    {
+                        <li class="mb-2">
+                            <a class="btn btn-outline-primary rounded-0 w-100 text-start fw-bold" data-bs-toggle="collapse" href="#@item.DVUrlImg" role="button" aria-expanded="false" aria-controls="@item.DVUrlImg">@item.DVName</a>
+                            <div class="collapse" id="@item.DVUrlImg">
+                                <div style="background-color: rgb(218 236 248)">
+                                    <div class="row"><div class="col-12 p-3"><p>@item.DVDescription</p></div></div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    <li>
+                        <a class="btn btn-outline-primary rounded-0 w-100 text-start fw-bold" data-bs-toggle="collapse" href="#cau3" role="button" aria-expanded="false" aria-controls="cau3">Vận chuyển hàng cần những chứng từ gì?</a>
+                        <div class="collapse" id="cau3">
+                            <div style="background-color: rgb(218 236 248)">
+                                <div class="row">
+                                    <div class="col-12 p-3">
+                                        <ul>
+                                            <li class="text-break">Hàng sản xuất trong nước: Hóa đơn VAT, trên hàng hóa phải có dán tem, nhãn, mã số hàng hóa trùng khớp với hóa đơn.</li>
+                                            <li class="text-break">Hàng vận chuyển nội bộ: Phiếu xuất kho kiêm vận chuyển nội bộ (mua mẫu ở cơ quan thuế thuộc Bộ Tài Chính cấp) trên các thùng hàng, kiện hàng cũng phải có tem nhãn công ty sản xuất đầy đủ.</li>
+                                            <li class="text-break">Hàng nhập khẩ: Phải có tờ khai hải quan, trên kiện hàng phải có tem nhãn phụ bằng Tiếng Việt.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3 mb-1">
+        <div class="col-12 text-center fw-bold"><h3 style="color: rgb(35 79 176)">THÔNG TIN VẬN TẢI CẦN BIẾT</h3></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+            <img src="~/Images/bg.jpeg" class="img-fluid mt-2" />
+        </div>
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+            <ul class="list-unstyled">
+                @foreach (var item in ViewBag.DS)
+                {
+                    <li class="mt-2"><i class="bi bi-check-circle-fill"></i> @item.DVDescription</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+

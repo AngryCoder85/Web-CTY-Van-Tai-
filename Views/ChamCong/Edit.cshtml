@@ -1,0 +1,71 @@
+﻿@model CTY_DVVT.Models.ChamCong
+
+@{
+    ViewBag.Title = "Chỉnh sửa Lương";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Sửa thông tin Chấm công</h2>
+<div class="container">
+    @using (Html.BeginForm("Edit", "ChamCong", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="ChamCongID" value="@Model.ChamCongID" />
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                <label for="NgayThang">Ngày tháng</label>
+                <input type="date" class="form-control" id="NgayThang" name="NgayThang" value="@Model.NgayThang.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.TXId, "Tài xế")
+                @Html.DropDownListFor(row => row.TXId, new SelectList(ViewBag.TX, "TXId", "TXName", 1), "Please select ...", new { @class = "form-control", @Value=Model.TXId })
+                @Html.ValidationMessageFor(row => row.TXId)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.Luong, "Lương")
+                @Html.TextBoxFor(row => row.Luong, new { @class = "form-control", placeholder = "Lương ...", @Value=Model.Luong.ToString("n0") })
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.GhiChu, "Ghi chú")
+                @Html.TextBoxFor(row => row.GhiChu, new { @class = "form-control", placeholder = "Ghi chú ...", @Value = Model.GhiChu })
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 text-center">
+                <button type="submit" id="final" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cập nhật</button>
+                <a href="/chamcong/index/@Model.TXId" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+
+<script>
+    function delcomma(_obj) {
+        if (parseInt(_obj) == 0)
+            return parseInt(_obj);
+        else
+            return parseInt(_obj.replaceAll(',', '').replaceAll('.', ''));
+    };
+
+    $(function () {
+        $("#final").click(function () {
+            $("#Luong").val(delcomma($("#Luong").val()));
+        });
+    });
+</script>
+

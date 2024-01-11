@@ -1,0 +1,32 @@
+﻿@model CTY_DVVT.Models.LoaiXe
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Sửa thông tin Loại Xe</h2>
+<div class="container">
+    <form action="/loaixe/edit/@Model.LXID" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="LXID" value="@Model.LXID" />
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.LXName, "Tên loại xe")
+                @Html.TextBoxFor(row => row.LXName, new { @class = "form-control", placeholder = "Tên loại xe ...", @Value = Model.LXName })
+                @Html.ValidationMessageFor(row => row.LXName)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cập nhật</button>
+                <a href="/loaixe/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </form>
+</div>
+

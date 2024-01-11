@@ -1,0 +1,41 @@
+﻿@model CTY_DVVT.Models.Xe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Xác nhận thông tin Xe</h2>
+<div class="container">
+    <form action="/xe/delete/@Model.XeId" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="XeId" value="@Model.XeId" />
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.LXID, "Loại xe")
+                @Html.DropDownListFor(row => row.LXID, new SelectList(ViewBag.LX, "LXID", "LXname", 1), "Please select ...", new { @class = "form-control", @Value = Model.LXID, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.LXID)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.BSXe, "Biển số xe")
+                @Html.TextBoxFor(row => row.BSXe, new { @class = "form-control", placeholder = "Biển số xe ...", @Value = Model.BSXe, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.BSXe)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>
+                <a href="/xe/index" class="btn btn-danger"><i class="fa fa-step-backward" aria-hidden="true"></i> Quay lại</a>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

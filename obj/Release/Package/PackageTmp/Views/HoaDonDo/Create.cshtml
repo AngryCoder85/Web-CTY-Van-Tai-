@@ -1,0 +1,70 @@
+﻿@model CTY_DVVT.Models.HoaDonDo
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Thêm hóa đơn đỏ</h2>
+<div class="container">
+    @using (Html.BeginForm("Create", "HoaDonDo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                <label for="NgayThang">Ngày tháng</label>
+                <input type="date" class="form-control" id="NgayThang" name="NgayThang" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.HDNhap, "Hóa đơn nhập")
+                @Html.TextBoxFor(row => row.HDNhap, new { @class = "form-control", @Value = "0" })
+                @Html.ValidationMessageFor(row => row.HDNhap)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.HDXuat, "Hóa đơn xuất")
+                @Html.TextBoxFor(row => row.HDXuat, new { @class = "form-control", @Value = "0" })
+                @Html.ValidationMessageFor(row => row.HDXuat)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.GhiChu, "Ghi chú")
+                @Html.TextBoxFor(row => row.GhiChu, new { @class = "form-control", placeholder = "Ghi chú ..." })
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 text-center">
+                <button type="submit" id="final" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Thêm</button>
+                <a href="/hoadondo/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+<script>
+    function delcomma(_obj) {
+        if (parseInt(_obj) == 0)
+            return parseInt(_obj);
+        else
+            return parseInt(_obj.replaceAll(',', '').replaceAll('.', ''));
+    };
+
+    $(function () {
+
+        $("#final").click(function () {
+            $("#HDNhap").val(delcomma($("#HDNhap").val()));
+            $("#HDXuat").val(delcomma($("#HDXuat").val()));
+        });
+    });
+</script>

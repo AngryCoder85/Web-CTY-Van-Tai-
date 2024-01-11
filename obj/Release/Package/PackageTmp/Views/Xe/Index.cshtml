@@ -1,0 +1,73 @@
+﻿@model List<CTY_DVVT.Models.Xe>
+
+@{
+    ViewBag.Title = "Danh sách xe";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="mt-2 text-center text-uppercase">Danh sách Xe trong công ty</h2>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div id="btn-addx" class="d-flex flex-row">
+                <a href="/xe/create" class="text-white btn btn-dark"><i class="fa fa-archive" aria-hidden="true"></i> Thêm thông tin xe mới</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div id="btn-loaix" class="d-flex flex-row justify-content-end">
+                <a href="/loaixe/index" class="btn btn-dark text-white fw-bold"><i class="fa fa-car" aria-hidden="true"></i> Loại xe</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function onresize() {
+            if ($(window).width() <= 1000) {
+                $("#btn-addx").addClass("justify-content-center");
+                $("#btn-addx").addClass("mt-2");
+                $("#btn-loaix").removeClass("justify-content-end");
+                $("#btn-loaix").addClass("justify-content-center");
+                $("#btn-loaix").addClass("mt-2");
+            } else {
+                $("#btn-addx").removeClass("justify-content-center");
+                $("#btn-addx").removeClass("mt-2");
+                $("#btn-loaix").removeClass("justify-content-center");
+                $("#btn-loaix").addClass("justify-content-end");
+                $("#btn-loaix").removeClass("mt-2");
+            }
+        }
+        $(window).ready(onresize);
+        $(window).resize(onresize);
+        onresize();
+    </script>
+</div>
+<div class="container-fluid mt-2">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Loại&nbsp;xe&nbsp;&nbsp;</th>
+                    <th>Biển&nbsp;số&nbsp;xe</th>
+                    <th>Sửa&nbsp;/&nbsp;Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Bảng&nbsp;ghi&nbsp;nhận&nbsp;sửa&nbsp;xe</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.LoaiXe.LXName</td>
+                    <td>@item.BSXe</td>
+                    <td>
+                        <a href="/xe/edit/@item.XeId"><i class="fa fa-pencil btn btn-secondary" aria-hidden="true"></i></a>
+                        <a href="/xe/delete/@item.XeId"><i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+                    </td>
+                    <td>
+                        <a href="/baocaoxe/index/@item.XeId"><i class="fa fa-book btn btn-primary" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model List<CTY_DVVT.Models.TaiXe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="mt-2 text-center text-uppercase">Danh sách Tài Xế trong công ty</h2>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/taixe/create" class="text-white btn btn-dark"><i class="fa fa-archive" aria-hidden="true"></i> Thêm thông tin tài xế mới</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-2">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tên&nbsp;Tài&nbsp;Xế</th>
+                    <th>Xe&nbsp;&nbsp;</th>
+                    <th>Số&nbsp;điện&nbsp;thoại</th>
+                    <th>Sửa&nbsp;/&nbsp;Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Bảng&nbsp;Chấm&nbsp;công</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.TXName</td>
+                        <td>@item.Xe.BSXe</td>
+                        <td>@item.TXSdt</td>
+                        <td>
+                            <a href="/taixe/edit/@item.TXId"><i class="fa fa-pencil btn btn-secondary" aria-hidden="true"></i></a>
+                            <a href="/taixe/delete/@item.TXId"><i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+                        </td>
+                        <td>
+                            <a href="/chamcong/index/@item.TXId"><i class="fa fa-book btn btn-primary" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

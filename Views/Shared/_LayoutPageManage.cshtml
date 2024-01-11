@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/swiper-bundle.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/sidebars.css" rel="stylesheet" />
+    <link href="~/bootstrap-icons-1.10.3/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/style-custom.css" rel="stylesheet" />
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/swiper-bundle.js"></script>
+    <script src="~/Scripts/jquery-3.6.3.js"></script>
+    <script src="~/Scripts/sidebars.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/x-icon" href="~/Images/fav-icon.png" />
+    <style>
+        #navInfo > div > ul > li > .info {
+            font-weight: 500;
+            color: white;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+
+        .validation-summary-errors {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: rgb(35 79 176) !important">
+        <div class="container-fluid">
+            <a href="/chuyenxe/index" class="navbar-brand my-auto"><i class="fa fa-wrench" aria-hidden="true"></i> Manage</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse1">
+                <ul class="navbar-nav me-auto fw-bold">
+                    <li class="nav-item"><a href="/khachhang/index" class="nav-link active">Khách hàng</a></li>
+                    <li class="nav-item"><a href="/xe/index" class="nav-link active">Xe</a></li>
+                    <li class="nav-item"><a href="/taixe/index" class="nav-link active">Tài xế</a></li>
+                    <li class="nav-item"><a href="/chuyenxe/index" class="nav-link active">Chuyến hàng</a></li>
+                    <li class="nav-item"><a href="/hoadondo/index" class="nav-link active">Hóa đơn đỏ</a></li>
+                </ul>
+                <a href="/account/logout" class="nav-item nav-link text-white fw-bold">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

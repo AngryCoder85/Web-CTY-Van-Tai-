@@ -1,0 +1,50 @@
+﻿@model List<CTY_DVVT.Models.LoaiXe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="mt-2 text-center text-uppercase">Danh sách Loại Xe</h2>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/loaixe/create" class="text-white btn btn-dark"><i class="fa fa-archive" aria-hidden="true"></i> Thêm loại xe</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-2">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tên&nbsp;loại&nbsp;&nbsp;</th>
+                    <th>Sửa&nbsp;/&nbsp;Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.LXName</td>
+                        <td>
+                            <a href="/loaixe/edit/@item.LXID"><i class="fa fa-pencil btn btn-secondary" aria-hidden="true"></i></a>
+                            <a href="/loaixe/delete/@item.LXID"><i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 col-sm-12 text-center">
+            <a href="/xe/index" class="btn btn-dark text-white fw-bold"><i class="fa fa-car" aria-hidden="true"></i> Xe</a>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+

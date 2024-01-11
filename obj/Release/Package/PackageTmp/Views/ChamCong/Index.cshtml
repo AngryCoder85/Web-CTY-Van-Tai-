@@ -1,0 +1,92 @@
+﻿@model List<CTY_DVVT.Models.ChamCong>
+
+@{
+    ViewBag.Title = "Bảng chấm công";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="mt-2 text-center text-uppercase">Bảng chấm công</h2>
+<h3 class="text-center">Tài xế: <span class="text-success">@ViewBag.TenTX</span></h3>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/chamcong/create" class="text-white btn btn-dark"><i class="fa fa-archive" aria-hidden="true"></i> Thêm thông tin chấm công</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3">
+    <form action="/chamcong/index">
+        <input type="hidden" name="id" id="id" value="@ViewBag.ID" />
+        <div id="flx-contain" class="input-group d-flex flex-row justify-content-center">
+            <div id="row-sort" class="d-flex flex-row ms-2 mt-2">
+                <div class="d-flex form-floating me-2 w-100 mt-2">
+                    <input type="date" class="form-control" id="DayS" name="DayS" />
+                    <label for="DayS">Ngày bắt đầu</label>
+                </div>
+                <div class="d-flex form-floating w-100 mt-2">
+                    <input type="date" class="form-control" id="DayE" name="DayE" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <label for="DayE">Ngày kết thúc</label>
+                </div>
+            </div>
+            <script>
+                function onresize() {
+                    if ($(window).width() <= 1000) {
+                        $("#row-sort").addClass("flex-column");
+                        $("#row-sort").removeClass("flex-row");
+                    } else {
+                        $("#row-sort").removeClass("flex-column");
+                        $("#row-sort").addClass("flex-row");
+                    }
+                }
+                $(window).resize(onresize);
+                onresize();
+            </script>
+        </div>
+        <div class="d-flex justify-content-center"><button type="submit" class="btn btn-secondary mt-2"><i class="bi bi-funnel-fill"></i> Lọc</button></div>
+    </form>
+</div>
+
+<div class="container-fluid mt-2">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ngày&nbsp;tháng&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tài&nbsp;xế&nbsp;&nbsp;</th>
+                    <th>Lương&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Ghi&nbsp;chú&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Sửa&nbsp;/&nbsp;Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NgayThang.ToString("dd/MM/yyyy")</td>
+                        <td>@item.TaiXe.TXName</td>
+                        <td>@item.Luong.ToString("#,##0")</td>
+                        <td>@item.GhiChu</td>
+                        <td>
+                            <a href="/ChamCong/edit/@item.ChamCongID"><i class="fa fa-pencil btn btn-secondary" aria-hidden="true"></i></a>
+                            <a href="/ChamCong/delete/@item.ChamCongID"><i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 d-flex justify-content-end"><a href="/chamcong/exporttoexcel" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel</a></div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 col-sm-12 text-center">
+            <a href="/taixe/index" class="btn btn-dark text-white fw-bold"><i class="fa fa-id-card" aria-hidden="true"></i> Tài Xế</a>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+﻿@model CTY_DVVT.Models.Xe
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Thông tin xe mới</h2>
+<div class="container">
+    @using (Html.BeginForm("Create", "Xe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.LXID, "Loại xe")
+                @Html.DropDownListFor(row => row.LXID, new SelectList(ViewBag.LX, "LXID", "LXname"), "Please select ...", new { @class = "form-control"})
+                @Html.ValidationMessageFor(row => row.LXID)
+                @Html.ActionLink("Click vào để thêm loại xe mới", "Create", "LoaiXe")
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.BSXe, "Biển số xe")
+                @Html.TextBoxFor(row => row.BSXe, new { @class = "form-control", placeholder = "Biển số xe ..." })
+                @Html.ValidationMessageFor(row => row.BSXe)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Thêm</button>
+                <a href="/xe/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+

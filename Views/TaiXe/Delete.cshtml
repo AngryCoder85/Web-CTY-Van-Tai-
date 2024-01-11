@@ -1,0 +1,46 @@
+﻿@model CTY_DVVT.Models.TaiXe
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Xác nhận thông tin Tài Xế</h2>
+<div class="container">
+    <form action="/taixe/delete/@Model.TXId" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="TXId" value="@Model.TXId" readonly="readonly" />
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                <label for="@Model.TXName">Tên Tài Xế</label>
+                <input type="text" class="form-control" id="TXName" name="TXName" value="@Model.TXName" readonly="readonly" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.Xe.BSXe, "Xe")
+                @Html.TextBoxFor(row => row.Xe.BSXe, new { @class = "form-control", @Value = Model.Xe.BSXe, @readonly = "true" })
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                <label for="@Model.TXSdt">Số điện thoại</label>
+                <input type="text" class="form-control" id="TXSdt" name="TXSdt" value="@Model.TXSdt" readonly="readonly" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>
+                <a href="/taixe/index" class="btn btn-danger"><i class="fa fa-step-backward" aria-hidden="true"></i> Quay lại</a>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

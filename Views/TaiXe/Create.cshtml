@@ -1,0 +1,49 @@
+﻿@model CTY_DVVT.Models.TaiXe
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Thông tin tài xế mới</h2>
+<div class="container">
+    @using (Html.BeginForm("Create", "TaiXe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.TXName, "Tên Tài Xế")
+                @Html.TextBoxFor(row => row.TXName, new { @class = "form-control", placeholder = "Tên ..." })
+                @Html.ValidationMessageFor(row => row.TXName)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.XeId, "Xe")
+                @Html.DropDownListFor(row => row.XeId, new SelectList(ViewBag.Xe, "XeId", "BSXe"), "Please select ...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(row => row.XeId)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 fw-bold">
+                @Html.LabelFor(row => row.TXSdt, "Số điện thoại")
+                @Html.TextBoxFor(row => row.TXSdt, new { @class = "form-control", placeholder = "Số điện thoại ..." })
+                @Html.ValidationMessageFor(row => row.TXSdt)
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Thêm</button>
+                <a href="/taixe/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,213 @@
+﻿@model CTY_DVVT.Models.ChuyenXe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="text-center mt-2">Xóa thông tin chuyến</h2>
+<div class="container">
+    @using (Html.BeginForm("Delete", "ChuyenXe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="CXID" value="@Model.CXID" />
+        <h3 class="text-warning fw-bold mt-2">Thông tin chung</h3>
+        <div class="row fw-bold mt-2">
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.KHId, "Khách hàng")
+                @Html.TextBoxFor(row => row.KhachHang.KHName, new { @class = "form-control", @Value = Model.KhachHang.KHName, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.KHId)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label for="NgayThang">Ngày tháng</label>
+                <input type="date" class="form-control" id="NgayThang" name="NgayThang" value="@Model.NgayThang.ToString("yyyy-MM-dd")" readonly="readonly" />
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.SangChieu, "Thời điểm")
+                @Html.TextBoxFor(row => row.SangChieu, new { @class = "form-control", @Value = Model.SangChieu, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.SangChieu)
+            </div>
+        </div>
+        <div class="row fw-bold mt-2">
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.NoiNhanHang, "Nơi nhận hàng")
+                @Html.TextBoxFor(row => row.NoiNhanHang, new { @class = "form-control", placeholder = "Nơi nhận hàng ...", @Value = Model.NoiNhanHang, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.NoiNhanHang)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.NoiNhanHang, "Nơi nhận hàng")
+                @Html.TextBoxFor(row => row.NoiNhanHang, new { @class = "form-control", placeholder = "Nơi nhận hàng ...", @Value = Model.NoiNhanHang, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.NoiNhanHang)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.NoiTraHang, "Nơi trả hàng")
+                @Html.TextBoxFor(row => row.NoiTraHang, new { @class = "form-control", placeholder = "Nơi trả hàng ...", @Value = Model.NoiTraHang, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.NoiTraHang)
+            </div>
+        </div>
+        <div class="row fw-bold mt-2">
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.SanPham, "Sản phẩm")
+                @Html.TextBoxFor(row => row.SanPham, new { @class = "form-control", placeholder = "Tên sản phẩm ...", @Value = Model.SanPham, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.SanPham)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.KhoiLuongHH, "Khối lượng hàng hóa")
+                @Html.TextBoxFor(row => row.KhoiLuongHH, new { @class = "form-control", type = "number", step = "0.01", min = "0", placeholder = "1 tấn", @Value = Model.KhoiLuongHH, @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.KhoiLuongHH)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.DonGia, "Đơn giá")
+                @Html.TextBoxFor(row => row.DonGia, new { @class = "form-control", placeholder = "Đơn giá ...", @Value = Model.DonGia.ToString("n0"), @readonly = "true" })
+                @Html.ValidationMessageFor(row => row.DonGia)
+            </div>
+        </div>
+        <h3 class="text-warning fw-bold mt-3">Thu Chi</h3>
+        <div class="row mt-1">
+            <div class="col-md-6 col-sm-12">
+                <h4 class="text-dark fw-bold">Chi</h4>
+                <div class="row fw-bold mt-2">
+                    <div class="col-md-6 col-sm-12">
+                        @Html.LabelFor(row => row.TienSuaXe, "Tiền sửa xe")
+                        @Html.TextBoxFor(row => row.TienSuaXe, new { @class = "form-control", @Value = Model.TienSuaXe.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienSuaXe)
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        @Html.LabelFor(row => row.GhiChuSX, "Ghi chú sửa xe")
+                        @Html.TextBoxFor(row => row.GhiChuSX, new { @class = "form-control", placeholder = "Ghi chú ...", @Value = Model.GhiChuSX, @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.GhiChuSX)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.TienDoDau, "Tiền đổ dầu")
+                        @Html.TextBoxFor(row => row.TienDoDau, new { @class = "form-control", @Value = Model.TienDoDau.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienDoDau)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.PhiCD, "Phí cầu đường")
+                        @Html.TextBoxFor(row => row.PhiCD, new { @class = "form-control", @Value = Model.PhiCD.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.PhiCD)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.TienCA, "Công An")
+                        @Html.TextBoxFor(row => row.TienCA, new { @class = "form-control", @Value = Model.TienCA.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienCA)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.TienAn, "Tiền ăn")
+                        @Html.TextBoxFor(row => row.TienAn, new { @class = "form-control", @Value = Model.TienAn.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienAn)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.TienThuocNuoc, "Thuốc nước")
+                        @Html.TextBoxFor(row => row.TienThuocNuoc, new { @class = "form-control", @Value = Model.TienThuocNuoc.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienThuocNuoc)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.BoiDuong, "Bồi dưỡng")
+                        @Html.TextBoxFor(row => row.BoiDuong, new { @class = "form-control", @Value = Model.BoiDuong.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.BoiDuong)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.LamHang, "Làm hàng")
+                        @Html.TextBoxFor(row => row.LamHang, new { @class = "form-control", @Value = Model.LamHang.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.LamHang)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.DenNuoc, "Đền nước")
+                        @Html.TextBoxFor(row => row.DenNuoc, new { @class = "form-control", @Value = Model.DenNuoc.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.DenNuoc)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.PhatSinhThem, "Phát sinh thêm")
+                        @Html.TextBoxFor(row => row.PhatSinhThem, new { @class = "form-control", @Value = Model.PhatSinhThem.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.PhatSinhThem)
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.TienConLaiCT, "Tiền còn lại chuyến trước")
+                        @Html.TextBoxFor(row => row.TienConLaiCT, new { @class = "form-control", placeholder = "Auto ...", @Value = Model.TienConLaiCT.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienConLaiCT)
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        @Html.LabelFor(row => row.TienCamDi, "Tiền cầm đi")
+                        @Html.TextBoxFor(row => row.TienCamDi, new { @class = "form-control", placeholder = "Money ...", @Value = Model.TienCamDi.ToString("n0"), @readonly = "true" })
+                        @Html.ValidationMessageFor(row => row.TienCamDi)
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <h4 class="text-dark fw-bold">Thu</h4>
+                <div class="row fw-bold mt-2">
+                    <div class="col-md-12 col-sm-12">
+                        @Html.LabelFor(row => row.ThanhTien, "Lấy tiền / Chuyển khoản")
+                        @Html.TextBoxFor(row => row.ThanhTien, new { @class = "form-control", placeholder = "Auto ...", @readonly = "true", @Value = Model.ThanhTien.ToString("n0") })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row fw-bold mt-2 text-success text-center">
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.Thu, "Thu")
+                @Html.TextBoxFor(row => row.Thu, new { @class = "form-control", placeholder = "Auto ...", @readonly = "true", @Value = Model.Thu.ToString("n0") })
+                @Html.ValidationMessageFor(row => row.Thu)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.Chi, "Chi")
+                @Html.TextBoxFor(row => row.Chi, new { @class = "form-control", placeholder = "Auto ...", @readonly = "true", @Value = Model.Chi.ToString("n0") })
+                @Html.ValidationMessageFor(row => row.Chi)
+            </div>
+            <div class="col-md-4 col-sm-12">
+                @Html.LabelFor(row => row.Tong, "Tổng")
+                @Html.TextBoxFor(row => row.Tong, new { @class = "form-control", placeholder = "Auto ...", @readonly = "true", @Value = Model.Tong.ToString("n0") })
+                @Html.ValidationMessageFor(row => row.Tong)
+            </div>
+        </div>
+        <div class="row fw-bold my-2">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-sm-12 text-center">
+                <button id="final" type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Xóa</button>
+                <a href="/chuyenxe/index" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+</div>
+
+<script>
+    function delcomma(_obj) {
+        if (parseInt(_obj) == 0)
+            return parseInt(_obj);
+        else
+            return parseInt(_obj.replaceAll(',', '').replaceAll('.', ''));
+    };
+
+    $(function () {
+        $("#DonGia").blur(function () {
+            $("#ThanhTien").val((parseInt($("#DonGia").val().replaceAll(',', '').replaceAll('.', '')) * parseFloat($("#KhoiLuongHH").val())).toLocaleString('en-US'));
+        });
+        
+        $("#final").click(function () {
+            $("#DonGia").val(delcomma($("#DonGia").val()))
+
+            $("#TienSuaXe").val(delcomma($("#TienSuaXe").val()));
+            $("#TienDoDau").val(delcomma($("#TienDoDau").val()));
+            $("#PhiCD").val(delcomma($("#PhiCD").val()));
+            $("#TienCA").val(delcomma($("#TienCA").val()));
+            $("#TienAn").val(delcomma($("#TienAn").val()));
+            $("#TienThuocNuoc").val(delcomma($("#TienThuocNuoc").val()));
+            $("#BoiDuong").val(delcomma($("#BoiDuong").val()));
+            $("#LamHang").val(delcomma($("#LamHang").val()));
+            $("#DenNuoc").val(delcomma($("#DenNuoc").val()));
+            $("#PhatSinhThem").val(delcomma($("#PhatSinhThem").val()));
+            $("#TienCamDi").val(delcomma($("#TienCamDi").val()));
+
+            $("#ThanhTien").val(delcomma($("#ThanhTien").val()));
+           /* $("#TienConLai").val(delcomma($("#TienConLai").val())); *//* Khi xoá tiền còn lại chuyến này, thì xoá luôn cái này */
+            $("#Thu").val(delcomma($("#Thu").val()));
+            $("#Chi").val(delcomma($("#Chi").val()));
+            $("#Tong").val(delcomma($("#Tong").val()));
+
+            alert("Thành công !!!");
+        });
+    });
+</script>
+

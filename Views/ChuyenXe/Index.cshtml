@@ -1,0 +1,183 @@
+﻿@model List<CTY_DVVT.Models.ChuyenXe>
+
+@{
+    ViewBag.Title = "Danh sách chuyến hàng";
+    Layout = "~/Views/Shared/_LayoutPageManage.cshtml";
+}
+
+<h2 class="mt-2 text-center text-uppercase">Danh sách Chuyến hàng</h2>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div id="btnAddCX" class="d-flex flex-row">
+                <a href="/chuyenxe/create" id="btnAddChuyenHang" class="btn btn-dark text-white"><i class="fa fa-archive" aria-hidden="true"></i> Thêm chuyến hàng mới</a>
+                @*<form class="" action="/chuyenxe/deletewithcond">
+                    <div class="input-group">
+                        <select class="form-select" name="delname" aria-label="Default select example">
+                            <option selected>Delete Mode ...</option>
+                            <option value="delall">Xóa tất cả</option>
+                        </select>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                </form>*@
+            </div>
+            <script>
+                function onresize() {
+                    if ($(window).width() <= 1000) {
+                        $("#btnAddCX").addClass("justify-content-center");
+                        $("#col-sort").addClass("mt-2");
+                        $("#btn-sort").addClass("justify-content-center");
+                        $("#btn-sort").removeClass("justify-content-end");
+                        $("#flx-contain").addClass("flex-column");
+                        $("#flx-contain").removeClass("justify-content-center");
+                        $("#flx-contain").removeClass("flex-row");
+                        $("#flx-contain").addClass("justify-content-center");
+                        $("#day-sort").addClass("flex-column");
+                        $("#day-sort").removeClass("flex-row");
+                    } else {
+                        $("#btnAddCX").removeClass("justify-content-center");
+                        $("#col-sort").removeClass("mt-2");
+                        $("#btn-sort").removeClass("justify-content-center");
+                        $("#btn-sort").addClass("justify-content-end");
+                        $("#flx-contain").addClass("flex-row");
+                        $("#flx-contain").removeClass("justify-content-center");
+                        $("#flx-contain").removeClass("flex-column");
+                        $("#flx-contain").addClass("justify-content-center");
+                        $("#day-sort").removeClass("flex-column");
+                        $("#day-sort").addClass("flex-row");
+                    }
+                }
+                $(window).ready(onresize);
+                $(window).resize(onresize);
+                onresize();
+            </script>
+        </div>
+        <div id="col-sort" class="col-md-6 col-sm-12">
+            <div id="btn-sort" class="d-flex flex-row justify-content-end">
+                <a class="btn btn-success" data-bs-toggle="collapse" href="#sort-collaspe" role="button" aria-expanded="false" aria-controls="sort-collaspe"><i class="bi bi-funnel-fill"></i> Bộ lọc</a>
+            </div>
+        </div>
+    </div>
+    <div class="collapse mt-2" id="sort-collaspe">
+        <form action="/chuyenxe/index">
+            <div id="flx-contain" class="input-group d-flex flex-row justify-content-center">
+                <div class="d-flex flex-row mt-2 ms-2">
+                    <div class="d-flex form-floating w-100 mt-2">
+                        <select class="form-select" name="search" aria-label="Default select example">
+                            <option value="" selected>Chọn tên khách hàng</option>
+                            @foreach (var item in ViewBag.KH)
+                            {
+                                <option value="@item.KHName">@item.KHName</option>
+                            }
+                        </select>
+                        <label for="search">Lọc theo tên khách hàng</label>
+                    </div>
+                </div>
+                <div class="d-flex flex-row mt-2 ms-2">
+                    <div class="d-flex form-floating w-100 mt-2">
+                        <select class="form-select" name="tentx" aria-label="Default select example">
+                            <option value="" selected>Chọn tên Tài xế</option>
+                            @foreach (var item in ViewBag.TX)
+                            {
+                                <option value="@item.TXName">@item.TXName</option>
+                            }
+                        </select>
+                        <label for="tentx">Lọc theo tên tài xế</label>
+                    </div>
+                </div>
+                <div id="day-sort" class="d-flex flex-row ms-2 mt-2">
+                    <div class="d-flex form-floating me-2 w-100 mt-2">
+                        <input type="date" class="form-control" id="DayS" name="DayS" />
+                        <label for="DayS">Ngày bắt đầu</label>
+                    </div>
+                    <div class="d-flex form-floating w-100 mt-2">
+                        <input type="date" class="form-control" id="DayE" name="DayE" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        <label for="DayE">Ngày kết thúc</label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center"><button type="submit" class="btn btn-secondary mt-2"><i class="bi bi-funnel-fill"></i> Lọc</button></div>
+        </form>
+    </div>
+</div>
+<div class="container-fluid mt-2">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Ngày&nbsp;Tháng&nbsp;&nbsp;&nbsp;</th>
+                    <th>Sáng&nbsp;/&nbsp;Chiều</th>
+                    <th>Tài&nbsp;Xế&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Khách&nbsp;hàng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Nơi&nbsp;nhận&nbsp;hàng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Nơi&nbsp;trả&nbsp;hàng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Sản&nbsp;phẩm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Đơn&nbsp;giá&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Khối&nbsp;lượng&nbsp;(Tấn)</th>
+                    <th>Lấy&nbsp;tiền&nbsp;/&nbsp;Chuyển&nbsp;khoản&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tiền&nbsp;cầm&nbsp;đi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tiền&nbsp;còn&nbsp;lại&nbsp;chuyến&nbsp;trước&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tiền&nbsp;sửa&nbsp;xe</th>
+                    <th>Ghi&nbsp;chú&nbsp;SX</th>
+                    <th>Đổ&nbsp;dầu&nbsp;(lít)</th>
+                    <th>Phí&nbsp;cầu&nbsp;đường&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tiền&nbsp;công&nbsp;an&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tiền&nbsp;ăn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Tiền&nbsp;thuốc&nbsp;nước&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Bồi&nbsp;dưỡng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Làm&nbsp;hàng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Đền&nbsp;nước&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Phát&nbsp;sinh&nbsp;thêm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    @*<th>Tiền&nbsp;còn&nbsp;lại&nbsp;chuyến&nbsp;này&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>*@
+                    <th>Thu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Doanh&nbsp;Thu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Sửa&nbsp;/&nbsp;Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.NgayThang.ToString("dd/MM/yyyy")</td>
+                    <td>@item.SangChieu</td>
+                    <td>@item.TaiXe.TXName</td>
+                    <td>@item.KhachHang.KHName</td>
+                    <td>@item.NoiNhanHang</td>
+                    <td>@item.NoiTraHang</td>
+                    <td>@item.SanPham</td>
+                    <td>@item.DonGia.ToString("#,##0")</td>
+                    <td>@item.KhoiLuongHH</td>
+                    <td>@item.ThanhTien.ToString("#,##0")</td>
+                    <td>@item.TienCamDi.ToString("#,##0")</td>
+                    <td>@item.TienConLaiCT.ToString("#,##0")</td>
+                    <td>@item.TienSuaXe.ToString("#,##0")</td>
+                    <td>@item.GhiChuSX</td>
+                    <td>@item.TienDoDau.ToString("#,##0")</td>
+                    <td>@item.PhiCD.ToString("#,##0")</td>
+                    <td>@item.TienCA.ToString("#,##0")</td>
+                    <td>@item.TienAn.ToString("#,##0")</td>
+                    <td>@item.TienThuocNuoc.ToString("#,##0")</td>
+                    <td>@item.BoiDuong.ToString("#,##0")</td>
+                    <td>@item.LamHang.ToString("#,##0")</td>
+                    <td>@item.DenNuoc.ToString("#,##0")</td>
+                    <td>@item.PhatSinhThem.ToString("#,##0")</td>
+                    @*<td>@item.TienConLai.ToString("#,##0")</td>*@
+                    <td>@item.Thu.ToString("#,##0")</td>
+                    <td>@item.Chi.ToString("#,##0")</td>
+                    <td>@item.Tong.ToString("#,##0")</td>
+                    <td>
+                        <a href="/ChuyenXe/edit/@item.CXID"><i class="fa fa-pencil btn btn-secondary" aria-hidden="true"></i></a>
+                        <a href="/ChuyenXe/delete/@item.CXID"><i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 d-flex justify-content-end"><a href="/ChuyenXe/exporttoexcel" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel</a></div>
+    </div>
+</div>
+
+
